@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
+using Blazored.Toast;
+using FoodDeliveryWebsite.Client.Services.CartService;
 using FoodDeliveryWebsite.Client.Services.CategoryService;
 using FoodDeliveryWebsite.Client.Services.MenuItemService;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -30,6 +33,9 @@ namespace FoodDeliveryWebsite.Client
 
             builder.Services.AddScoped<IMenuItemService, MenuItemService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddBlazoredLocalStorage();
+            builder.Services.AddBlazoredToast();
 
             await builder.Build().RunAsync();
         }

@@ -1,5 +1,8 @@
 ﻿@page "/menuitem/{id:int}"
-@inject IMenuItemService MenuItemService 
+@inject IMenuItemService MenuItemService
+@inject ICartService CartService 
+@inject ILocalStorageService LocalStorage 
+@inject IToastService ToastService
 
 @if (menuItem == null)
 {
@@ -17,6 +20,14 @@ else
             <h4 class="price">
                 S$@menuItem.Price
             </h4>
+            <EditForm Model="cartItem">
+                <div class="form-group">
+                    <InputNumber id="quantity" @bind-Value="cartItem.Quantity" class="form-control" style="width:70px;" />
+                </div>
+            </EditForm>
+            <button class="btn btn-primary" @onclick="AddToCart">
+                <i class="oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Add To Cart
+            </button>
         </div>
     </div>
 }
@@ -24,6 +35,7 @@ else
 @code {
 
     private MenuItem menuItem = null;
+    private CartItem cartItem = new CartItem { Quantity = 1 };
     private string message;
 
     [Parameter]
@@ -43,5 +55,16 @@ else
         {
             menuItem = result.Data;
         }
+    }
+
+    private async Task AddToCart()
+    {
+        cartItem.MenuItemId = menuItem.Id;
+        cartItem.MenuItemName = menuItem.Name;
+        cartItem.MenuItemDescription = menuItem.Description;
+        cartItem.MenuItemImageUrl = menuItem.ImageUrl;
+        cartItem.MenuItemPrice = menuItem.Price;
+
+        await CartService.AddToCart(cartItem);
     }
 }
