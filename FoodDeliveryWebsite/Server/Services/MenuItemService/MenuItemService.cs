@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FoodDeliveryWebsite.Server.Data;
 using FoodDeliveryWebsite.Shared;
+using FoodDeliveryWebsite.Shared.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodDeliveryWebsite.Server.Services.MenuItemService
@@ -100,11 +101,26 @@ namespace FoodDeliveryWebsite.Server.Services.MenuItemService
             return new ServiceResponse<List<string>> { Data = result };
         }
 
-        public async Task<ServiceResponse<List<MenuItem>>> SearchMenuItems(string searchText)
+        public async Task<ServiceResponse<MenuItemSearchResult>> SearchMenuItems(string searchText, int page)
         {
-            var response = new ServiceResponse<List<MenuItem>>
+            var pageResults = 3f;
+            var pageCount = Math.Ceiling((await FindMenuItemsBySearchText(searchText)).Count / pageResults);
+
+            var menuItems = await _context.MenuItems
+                                .Where(p => p.Name.ToLower().Contains(searchText.ToLower())
+                                || p.Description.ToLower().Contains(searchText.ToLower()))
+                                .Skip((page - 1) * (int)pageResults)
+                                .Take((int)pageResults)
+                                .ToListAsync();
+
+            var response = new ServiceResponse<MenuItemSearchResult>
             {
-                Data = await FindMenuItemsBySearchText(searchText)
+                Data = new MenuItemSearchResult
+                {
+                    MenuItems = menuItems,
+                    CurrentPage = page,
+                    Pages = (int)pageCount
+                }
             };
 
             return response;

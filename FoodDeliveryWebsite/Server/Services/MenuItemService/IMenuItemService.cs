@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FoodDeliveryWebsite.Shared;
+using FoodDeliveryWebsite.Shared.DTOs;
 
 namespace FoodDeliveryWebsite.Server.Services.MenuItemService
 {
@@ -11,7 +12,7 @@ namespace FoodDeliveryWebsite.Server.Services.MenuItemService
         Task<ServiceResponse<List<MenuItem>>> GetMenuItems();
         Task<ServiceResponse<MenuItem>> GetMenuItemById(int id);
         Task<ServiceResponse<List<MenuItem>>> GetMenuItemsByCategory(string categoryUrl);
-        Task<ServiceResponse<List<MenuItem>>> SearchMenuItems(string searchText);
+        Task<ServiceResponse<MenuItemSearchResult>> SearchMenuItems(string searchText, int page);
         Task<ServiceResponse<List<string>>> GetMenuItemSearchSuggestions(string searchText);
         Task<ServiceResponse<List<MenuItem>>> GetFeaturedMenuItems();
     }

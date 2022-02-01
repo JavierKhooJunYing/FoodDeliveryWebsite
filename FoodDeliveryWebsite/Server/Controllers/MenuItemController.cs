@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FoodDeliveryWebsite.Server.Data;
 using FoodDeliveryWebsite.Server.Services.MenuItemService;
 using FoodDeliveryWebsite.Shared;
+using FoodDeliveryWebsite.Shared.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -43,10 +44,10 @@ namespace FoodDeliveryWebsite.Server.Controllers
             return Ok(response);
         } 
 
-        [HttpGet("search/{searchText}")]
-        public async Task<ActionResult<ServiceResponse<List<MenuItem>>>> SearchMenuItems(string searchText)
+        [HttpGet("search/{searchText}/{page}")]
+        public async Task<ActionResult<ServiceResponse<MenuItemSearchResult>>> SearchMenuItems(string searchText, int page = 1)
         {
-            var response = await _menuItemService.SearchMenuItems(searchText);
+            var response = await _menuItemService.SearchMenuItems(searchText, page);
             return Ok(response);
         }
 

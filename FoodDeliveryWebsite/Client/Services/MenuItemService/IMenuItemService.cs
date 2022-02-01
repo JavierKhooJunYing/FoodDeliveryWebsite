@@ -11,9 +11,12 @@ namespace FoodDeliveryWebsite.Client.Services.MenuItemService
         event Action MenuItemsChanged;
         List<MenuItem> MenuItems { get; set; }
         string Message { get; set; }
+        int CurrentPage { get; set; }
+        int PageCount { get; set; }
+        string LastSearchText { get; set; }
         Task GetMenuItems(string categoryUrl = null);
         Task<ServiceResponse<MenuItem>> GetMenuItemById(int id);
-        Task SearchMenuItems(string searchText);
+        Task SearchMenuItems(string searchText, int page);
         Task<List<string>> GetMenuItemSearchSuggestions(string searchText);
     }
 }
