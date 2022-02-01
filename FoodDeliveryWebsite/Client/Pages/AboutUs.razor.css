@@ -1,0 +1,30 @@
+﻿.content-section {
+    margin: 1em;
+    font-size: 1.3em;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5em;
+}
+
+.section-header {
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.about-pezzo-image {
+    float: left;
+    height: 200px;
+    width: 200px;
+    margin: 15px;
+    border-radius: 50%;
+}
+
+.about-margin {
+    margin-bottom: 19px;
+}
+

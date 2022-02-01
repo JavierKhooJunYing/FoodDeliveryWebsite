@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDeliveryWebsite.Server", "FoodDeliveryWebsite\Server\FoodDeliveryWebsite.Server.csproj", "{6C8C6AB7-E0D4-47AC-BD7B-9F1DC040B059}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryWebsite.Server", "FoodDeliveryWebsite\Server\FoodDeliveryWebsite.Server.csproj", "{6C8C6AB7-E0D4-47AC-BD7B-9F1DC040B059}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDeliveryWebsite.Client", "FoodDeliveryWebsite\Client\FoodDeliveryWebsite.Client.csproj", "{F54576C3-1D90-4737-8D79-80E6BA0639C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryWebsite.Client", "FoodDeliveryWebsite\Client\FoodDeliveryWebsite.Client.csproj", "{F54576C3-1D90-4737-8D79-80E6BA0639C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDeliveryWebsite.Shared", "FoodDeliveryWebsite\Shared\FoodDeliveryWebsite.Shared.csproj", "{D843276B-EA85-4020-8655-AF25C7B2BF4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryWebsite.Shared", "FoodDeliveryWebsite\Shared\FoodDeliveryWebsite.Shared.csproj", "{D843276B-EA85-4020-8655-AF25C7B2BF4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
