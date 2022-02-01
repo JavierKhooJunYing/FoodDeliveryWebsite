@@ -1,0 +1,47 @@
+﻿@page "/menuitem/{id:int}"
+@inject IMenuItemService MenuItemService 
+
+@if (menuItem == null)
+{
+    <span>@message</span>
+}
+else
+{
+    <div class="media">
+        <div class="media-img-wrapper mr-2">
+            <img class="media-img" src="@menuItem.ImageUrl" alt="@menuItem.Name" />
+        </div>
+        <div class="media-body">
+            <h2 class="mb-0">@menuItem.Name</h2>
+            <p>@menuItem.Description</p>
+            <h4 class="price">
+                S$@menuItem.Price
+            </h4>
+        </div>
+    </div>
+}
+
+@code {
+
+    private MenuItem menuItem = null;
+    private string message;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        message = "Loading Menu Item...";
+
+        var result = await MenuItemService.GetMenuItemById(Id);
+
+        if (!result.Success)
+        {
+            message = result.Message;
+        }
+        else
+        {
+            menuItem = result.Data;
+        }
+    }
+}

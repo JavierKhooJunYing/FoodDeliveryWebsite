@@ -1,0 +1,39 @@
+﻿@page "/"
+@page "/{categoryUrl}"
+@page "/search/{searchText}"
+@inject IMenuItemService MenuItemService 
+@attribute [Authorize]
+
+@if (SearchText == null && CategoryUrl == null)
+{
+    <FeaturedMenuItems />
+}
+else
+{
+    <MenuItemList />
+}
+
+@code {
+
+    [Parameter]
+    public string CategoryUrl { get; set; } = null;
+
+    [Parameter]
+    public string SearchText { get; set; } = null;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (SearchText != null)
+        {
+            await MenuItemService.SearchMenuItems(SearchText);
+        }
+        else if (CategoryUrl != null)
+        {
+            await MenuItemService.GetMenuItems(CategoryUrl);
+        }
+        else
+        {
+            await MenuItemService.GetMenuItems();
+        }
+    }
+}
